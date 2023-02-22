@@ -20,3 +20,8 @@ grid.addEventListener("mousemove", (e) => {
     grid.scrollLeft = scrollLeft - ((e.pageX - startX) * scrollSpeed)
     grid.scrollTop = scrollTop - ((e.pageY - startY) * scrollSpeed)
 })
+grid.addEventListener("wheel", (e) => {
+    if (e.wheelDelta > 0) boxSize+=2       
+    if (e.wheelDelta < 0) boxSize-=2
+    grid.style.setProperty("--boxSize", boxSize + "px")
+})

@@ -5,7 +5,7 @@ const startButton = getId("startButton")
 const drawMode = getId("drawMode")
 const gridScale = getId("gridScale")
 
-const boxSize = 100
+let boxSize = 100
 const rowCount = 200
 const columnCount = 200
 
