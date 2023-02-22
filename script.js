@@ -2,15 +2,17 @@ function getId(id) {return document.getElementById(id)}
 
 const grid = getId("wrapGrid")
 const startButton = getId("startButton")
+const drawMode = getId("drawMode")
 const gridScale = getId("gridScale")
 
-const boxSize = 20
-const rowCount = 80
-const columnCount = 80
+const boxSize = 100
+const rowCount = 200
+const columnCount = 200
 
+let drawmode = false
 let drawable = false
 
-grid.style.setProperty("--boxSize", 100 + "px")
+grid.style.setProperty("--boxSize", boxSize + "px")
 grid.style.setProperty("--rowCount", rowCount)
 grid.style.setProperty("--columnCount", columnCount)
 
@@ -24,18 +26,17 @@ for (let i = 0; i < rowCount*columnCount; i++) {
     element.addEventListener("mouseover", (e) => handleClick(e))
     grid.append(element)
 }
-
-//grid.addEventListener("mousedown", () => {
-//    drawable = true
-//    if (window.event.which == 3) remove = true
-//})
-//grid.addEventListener("mouseup", () => {
-//    drawable = false
-//})
+grid.addEventListener("mousedown", (e) => {
+    if (!drawmode) return
+    drawable = true
+    e.target.classList.add("alive")
+})
+grid.addEventListener("mouseup", () => drawable = false)
+drawMode.addEventListener("click", () => drawmode = !drawmode)
 gridScale.addEventListener("input", (e) => {
     grid.style.setProperty("--boxSize", e.target.value + "px")
 })
-startButton.addEventListener("click", () => {executePattern()})
+startButton.addEventListener("click", () => {setInterval(() => {executePattern()}, 100)})
 
 function executePattern() {
     const fields = grid.childNodes

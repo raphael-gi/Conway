@@ -12,14 +12,10 @@ grid.addEventListener("mousedown", (e) => {
     scrollLeft = grid.scrollLeft
     scrollTop = grid.scrollTop
 })
-grid.addEventListener("mouseup", () => {
-    active = false
-})
-grid.addEventListener("mouseleave", () => {
-    active = false
-})
+grid.addEventListener("mouseup", () => {active = false})
+grid.addEventListener("mouseleave", () => active = false)
 grid.addEventListener("mousemove", (e) => {
-    if (!active) return
+    if (!active || drawmode) return
     e.preventDefault()
     grid.scrollLeft = scrollLeft - ((e.pageX - startX) * scrollSpeed)
     grid.scrollTop = scrollTop - ((e.pageY - startY) * scrollSpeed)
