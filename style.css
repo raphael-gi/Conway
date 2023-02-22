@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    background-color: rgb(17, 17, 36);
+}
+
+#wrapGrid {
+    --boxSize: 0px;
+    --rowsCount: 0;
+    --borderSize: 1px;
+    display: grid;
+    grid-template-columns: repeat(var(--rowsCount), calc(var(--boxSize) + var(--borderSize)));
+}
+#wrapGrid div {
+    height: var(--boxSize);
+    aspect-ratio: 1;
+    border-style: solid;
+    border-color: white;
+    border-width: var(--borderSize);
+}
+.alive {
+    background-color: red;
+}
