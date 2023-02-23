@@ -93,13 +93,11 @@ body {
 
 .menu .info {
     margin: auto 0 25px 0;
-    display: flex;
-    gap: 25px;
 }
 .menu .info a {
     color: white;
 }
 .menu .info i {
-    font-size: 30px;
+    font-size: 35px;
     cursor: pointer;
 }
