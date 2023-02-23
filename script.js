@@ -2,8 +2,10 @@ function getId(id) {return document.getElementById(id)}
 
 const grid = getId("wrapGrid")
 const startButton = getId("startButton")
+const nextButton = getId("nextButton")
 const drawMode = getId("drawMode")
-const gridScale = getId("gridScale")
+const clearButton = getId("clearButton")
+const drawAdd = getId("drawAdd")
 
 let boxSize = 100
 const rowCount = 200
@@ -12,6 +14,7 @@ const columnCount = 200
 let drawmode = false
 let drawable = false
 let start = false
+let drawadd = true
 
 let patternInterval
 
@@ -19,9 +22,13 @@ grid.style.setProperty("--boxSize", boxSize + "px")
 grid.style.setProperty("--rowCount", rowCount)
 grid.style.setProperty("--columnCount", columnCount)
 
+function changeField(e) {
+    if (drawadd) e.target.classList.add("alive")
+    if (!drawadd) e.target.classList.remove("alive")
+}
 function handleClick(e) {
     if (!drawable) return
-    e.target.classList.add("alive")
+    changeField(e)
 }
 
 for (let i = 0; i < rowCount*columnCount; i++) {
@@ -32,25 +39,39 @@ for (let i = 0; i < rowCount*columnCount; i++) {
 grid.addEventListener("mousedown", (e) => {
     if (!drawmode) return
     drawable = true
-    e.target.classList.add("alive")
+    changeField(e)
 })
 grid.addEventListener("mouseup", () => drawable = false)
 drawMode.addEventListener("click", () => {
-    drawmode = !drawmode
+    if (drawmode) {
+        drawMode.innerHTML = "Navigation <i class='bi bi-arrows-move'></i>"
+    }
+    if (!drawmode) {
+        drawMode.innerHTML = "Draw Mode <i class='bi bi-pencil-square'></i>"
+    }
     grid.classList.toggle("drawMode")
+    drawmode = !drawmode
 })
-gridScale.addEventListener("input", (e) => {
-    grid.style.setProperty("--boxSize", e.target.value + "px")
+drawAdd.addEventListener("click", () => {
+    if (drawadd) drawAdd.innerHTML = "<i class='bi bi-x-lg'></i>"
+    if (!drawadd) drawAdd.innerHTML = "<i class='bi bi-pencil'></i>"
+    drawadd = !drawadd
+    console.log(drawadd)
 })
+clearButton.addEventListener("click", () => {
+    const fields = grid.childNodes
+    fields.forEach(field => field.classList.remove("alive"))
+})
+nextButton.addEventListener("click", () => executePattern())
 startButton.addEventListener("click", () => {
     if (start) {
         clearInterval(patternInterval)
-        startButton.innerHTML = "Start"
+        startButton.innerHTML = "Start<i class='bi bi-play-fill'></i>"
         start = false
         return
     }
     patternInterval = setInterval(() => {executePattern()}, 100)
-    startButton.innerHTML = "End"
+    startButton.innerHTML = "Stop<i class='bi bi-stop-fill'></i>"
     start = true
 })
 

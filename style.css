@@ -1,12 +1,14 @@
 body {
     height: 100vh;
     width: 100vw;
-    display: flex;
     overflow: hidden;
+    display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     margin: 0;
+    color: white;
     background-color: rgb(17, 17, 36);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #wrapGrid {
@@ -14,9 +16,11 @@ body {
     --rowCount: 0;
     --columnCount: 0;
     --borderSize: 1px;
+    position: relative;
     overflow: hidden;
     display: grid;
     height: 100vh;
+    width: 100%;
     grid-template-columns: repeat(var(--columnCount), calc(var(--boxSize) + var(--borderSize)));
     grid-template-rows: repeat(var(--rowCount), calc(var(--boxSize) + var(--borderSize)));
     user-select: none;
@@ -32,15 +36,70 @@ body {
     height: var(--boxSize);
     aspect-ratio: 1;
     border-style: solid;
-    border-color: white;
+    border-color: rgb(241, 241, 241);
     border-width: var(--borderSize);
 }
 .alive {
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(170, 170, 170);
+}
+.menu {
+    position: relative;
+    height: 100vh;
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right-style: solid;
+    border-width: 2px;
+}
+.menu h1 {
+    margin: 50px 0;
+    font-size: 3em;
+    text-align: center;
+}
+.menu .wrapOptions {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+}
+.menu button {
+    cursor: pointer;
+    width: 100%;
+    height: 55px;
+    font-size: 20px;
+    padding: 0;
+    border: solid;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-width: 2px;
+    border-color: rgb(170, 170, 170);
+    transition: 100ms ease;
+}
+.menu button:hover {
+    border-color: white;
+}
+.wrapStart {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+.wrapStart .smallButton {
+    width: 55px;
+    aspect-ratio: 1;
 }
 
-.menu {
-    position: fixed;
-    top: 50px;
-    right: 100px;
+.menu .info {
+    margin: auto 0 25px 0;
+    display: flex;
+    gap: 25px;
+}
+.menu .info a {
+    color: white;
+}
+.menu .info i {
+    font-size: 30px;
+    cursor: pointer;
 }

@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pattern</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
+    <title>Conway's Game of Life</title>
+    <link rel="icon" href="media/conway.gif" type="image/gif" >
 </head>
 <body>
-    <div id="wrapGrid"></div>
     <div class="menu">
-        <button id="startButton">Start</button>
-        <button id="drawMode">Draw Mode</button>
-        <input id="gridScale" min="10" value="100" max="200" type="range">
+        <h1>Conway's Game of Life</h1>
+        <div class="wrapOptions">
+            <div class="wrapStart">
+                <button id="startButton">Start<i class="bi bi-play-fill"></i></button>
+                <button id="nextButton" class="smallButton"><i class="bi bi-arrow-right"></i></button>
+            </div>
+            <div class="wrapStart">
+                <button id="drawMode">Navigation <i class="bi bi-arrows-move"></i></button>
+                <button id="drawAdd" class="smallButton"><i class="bi bi-pencil"></i></button>
+            </div>
+            <button id="clearButton" title="delete all the alive cells">Clear <i class="bi bi-trash"></i></button>
+        </div>
+        <div class="info">
+            <i title="Information" class="bi bi-question-circle"></i>
+            <a target="_blank" href="https://github.com/raphael-gi/Conway" title="GitHub Repository"><i class="bi bi-github"></i></a>
+        </div>
     </div>
+    <div id="wrapGrid"></div>
     <script src="script.js"></script>
     <script src="navigation.js"></script>
 </body>
