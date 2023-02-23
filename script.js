@@ -11,6 +11,9 @@ const columnCount = 200
 
 let drawmode = false
 let drawable = false
+let start = false
+
+let patternInterval
 
 grid.style.setProperty("--boxSize", boxSize + "px")
 grid.style.setProperty("--rowCount", rowCount)
@@ -32,11 +35,24 @@ grid.addEventListener("mousedown", (e) => {
     e.target.classList.add("alive")
 })
 grid.addEventListener("mouseup", () => drawable = false)
-drawMode.addEventListener("click", () => drawmode = !drawmode)
+drawMode.addEventListener("click", () => {
+    drawmode = !drawmode
+    grid.classList.toggle("drawMode")
+})
 gridScale.addEventListener("input", (e) => {
     grid.style.setProperty("--boxSize", e.target.value + "px")
 })
-startButton.addEventListener("click", () => {setInterval(() => {executePattern()}, 100)})
+startButton.addEventListener("click", () => {
+    if (start) {
+        clearInterval(patternInterval)
+        startButton.innerHTML = "Start"
+        start = false
+        return
+    }
+    patternInterval = setInterval(() => {executePattern()}, 100)
+    startButton.innerHTML = "End"
+    start = true
+})
 
 function executePattern() {
     const fields = grid.childNodes

@@ -11,9 +11,14 @@ grid.addEventListener("mousedown", (e) => {
     startY = e.pageY
     scrollLeft = grid.scrollLeft
     scrollTop = grid.scrollTop
+    grid.classList.add("active")
 })
-grid.addEventListener("mouseup", () => {active = false})
-grid.addEventListener("mouseleave", () => active = false)
+function navEnd() {
+    active = false
+    grid.classList.remove("active")
+}
+grid.addEventListener("mouseup", () => navEnd())
+grid.addEventListener("mouseleave", () => navEnd())
 grid.addEventListener("mousemove", (e) => {
     if (!active || drawmode) return
     e.preventDefault()

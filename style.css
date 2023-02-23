@@ -20,6 +20,13 @@ body {
     grid-template-columns: repeat(var(--columnCount), calc(var(--boxSize) + var(--borderSize)));
     grid-template-rows: repeat(var(--rowCount), calc(var(--boxSize) + var(--borderSize)));
     user-select: none;
+    cursor: grab;
+}
+#wrapGrid.active {
+    cursor: grabbing;
+}
+#wrapGrid.drawMode {
+    cursor: cell;
 }
 #wrapGrid div {
     height: var(--boxSize);
@@ -29,7 +36,7 @@ body {
     border-width: var(--borderSize);
 }
 .alive {
-    background-color: red;
+    background-color: rgb(220, 220, 220);
 }
 
 .menu {
